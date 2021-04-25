@@ -1,20 +1,20 @@
 
 public class CheckLocation {
-	public static boolean checkLocation(int positionInput,char board[],char userInput) {
+	public static boolean checkLocation(int positionInput,char board[]) {
+		boolean check =true;
 		for(int i =1 ;i<board.length ;i++) {
 			if(i==positionInput)
 			{
 				if(board[i]== '\u0000' ) {
-					board [positionInput] = userInput;
-					return true;
+					check =true;
 				}
-				else
+				else {
 					System.out.println("location " + i +" is not available ");
-					return false;
+					check= false;
+				}
 			}
 		}
-		
-		return checkLocation(positionInput, board ,userInput);
+		return check;
 	}
 
 }
