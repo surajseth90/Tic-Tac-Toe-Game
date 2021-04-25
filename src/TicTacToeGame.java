@@ -8,15 +8,16 @@ public class TicTacToeGame {
 			if(Toss.checkFirstPlay()==0) {
 				int positionInput = UserPlay.userMove(scanner);
 				char userInput= UserPlay.userInput(scanner);
-				TicTacToeBoard.ticTacToeBoard(positionInput, userInput);	
-		}
+				int userPlay =0;
+				TicTacToeBoard.ticTacToeBoard(positionInput, userInput , userPlay);	
+			}
 			else {
 				char computerInput = ComputerPlay.computerInput();
 				int positionInput =ComputerPlay.computerPositionInput();
-				TicTacToeBoard.ticTacToeBoard(positionInput, computerInput);
+				int ComputerPlay =1;
+				TicTacToeBoard.ticTacToeBoard(positionInput, computerInput,ComputerPlay);	
+			}
 			
-		}
 		
-	
-	}
+		}
 }

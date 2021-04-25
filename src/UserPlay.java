@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class UserPlay {
 	public static char userInput (Scanner scanner){
 		System.out.println("Enter a Letter between 'X' or '0'");
-		char userInput = scanner.next().toUpperCase().charAt(0);
+		char userInput = scanner.next().charAt(0);
 		return userInput;
 	}
 	

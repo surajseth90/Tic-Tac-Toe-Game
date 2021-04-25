@@ -5,28 +5,46 @@ public class TicTacToeBoard {
 	static int win =1;
 	static int tie =2;
 	static int changeTurn =3;
+	
 
-	public static void ticTacToeBoard(int positionInput,char userInput){
+	public static void ticTacToeBoard(int positionInput,char Input , int play){
+		Scanner scanner = new Scanner(System.in);
 		if(CheckLocation.checkLocation(positionInput, board)==true)
-		board [positionInput] = userInput;
+		board [positionInput] = Input;
 		ShowBoard.showBoard(board);	
-		TicTacToeBoard.checkWin();
+		TicTacToeBoard.checkWin(play);
 		
-	}
-	
-	public static boolean checkArrayIsFull() {
-		boolean checkArray = true;
-		for(int i =0; i<board.length;i++) {
-			if(board[i]== '\u0000') 
-				checkArray = false;
-			else
-				checkArray =true;
+		while(TicTacToeBoard.checkArrayIsFull(10)==false) {
+			
+			if(play%2 ==1) {
+				int positionOfInput = UserPlay.userMove(scanner);
+				char userInput= UserPlay.userInput(scanner);
+				if(CheckLocation.checkLocation(positionOfInput, board)==true)
+				board [positionOfInput] = userInput;
+				ShowBoard.showBoard(board);	
+				play++;
+				TicTacToeBoard.checkWin(play);		
+			}
+			
+			else {
+				char computerInput = ComputerPlay.computerInput();
+				int positionOfInput ;
+				do{ 
+					positionOfInput =ComputerPlay.computerPositionInput();
+					if(CheckLocation.checkLocation(positionOfInput, board)==true)
+					board [positionOfInput] = computerInput;
+					
+				}
+				while(CheckLocation.checkLocation(positionOfInput, board)==true);
+					ShowBoard.showBoard(board);
+					play++;
+					TicTacToeBoard.checkWin(play);
+			}	
 		}
-		return checkArray;
 	}
-	
-	public static void checkWin() {
-		if((board[1] == 'x' && board[2] == 'x' && board[3] == 'x') || 
+		
+	public static void checkWin(int play) {
+			if((board[1]=='x' && board[2] == 'x' && board[3] == 'x') || 
 			(board[4] == 'x' && board[5] == 'x' && board[6] == 'x') ||
 			(board[7] == 'x' && board[8] == 'x' && board[9] == 'x') ||
 			(board[1] == 'x' && board[4] == 'x' && board[7] == 'x') || 
@@ -42,13 +60,28 @@ public class TicTacToeBoard {
 			(board[3] == '0' && board[6] == '0' && board[9] == '0') || 
 			(board[1] == '0' && board[5] == '0' && board[9] == '0') ||
 			(board[3] == '0' && board[5] == '0' && board[7] == '0')) {
-			System.out.println(" You Won ");
-			
+				if(play%2 ==0) 
+					System.out.println(" You Won ");
+				else
+					System.out.println(" Computer Won ");
+				System.exit(0);
 		}
-		else if(TicTacToeBoard.checkArrayIsFull()==true) {
+		else if(TicTacToeBoard.checkArrayIsFull(10)==true) {
 			System.out.println(" It's tie : Game Over ");	
 		}
 		else
-			System.out.println("/n Turn change");
+			System.out.println(" Turn change");
 			}
+	
+	public static boolean checkArrayIsFull(int n) {
+		int check =1;
+		for(int i =0; i<board.length;i++) {
+			if(board[i]!= '\u0000') 
+				check++;
+		}
+		if(check==n)
+			return true;
+		return false;
+				
+	}
 }
