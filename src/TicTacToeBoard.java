@@ -67,7 +67,7 @@ public class TicTacToeBoard {
 				System.exit(0);
 		}
 		else if(TicTacToeBoard.checkArrayIsFull(10)==true) {
-			System.out.println(" It's tie : Game Over ");	
+			System.out.println(" The board is End ");	
 		}
 		else
 			System.out.println(" Turn change");
