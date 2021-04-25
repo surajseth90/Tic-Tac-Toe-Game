@@ -17,7 +17,5 @@ public class TicTacToeGame {
 				int ComputerPlay =1;
 				TicTacToeBoard.ticTacToeBoard(positionInput, computerInput,ComputerPlay);	
 			}
-			
-		
-		}
+	}
 }
