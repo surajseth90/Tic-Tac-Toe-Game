@@ -4,7 +4,7 @@ public class TicTacToeBoard {
 	
 	public static void ticTacToeBoard(int positionInput,char userInput){
 		char board [] = new char [10];
-		board [positionInput] = userInput;
+		CheckLocation.checkLocation(positionInput, board ,userInput);
 		ShowBoard.showBoard(board);	
 	}
 
